@@ -1,51 +1,81 @@
-# ufsj-ds-seminario-altair
-# Seminário Altair — Análise Exploratória com a Base do Titanic
+# Seminário Altair — Análise Exploratória dos Dados do Titanic
 
-Notebook reprodutível desenvolvido em **Altair** (sintaxe declarativa) sobre a base `titanic.csv`, com visualizações interativas, composição de gráficos e ambiente Conda isolado (`seminario-altair`).
+Projeto desenvolvido para um seminário da disciplina de **Tecnologias para Data Science**, do DCOMP/UFSJ, com foco na biblioteca **Altair** para visualização de dados em Python.
 
-## Arquivos do Projeto
-- `seminario-altair-titanic.ipynb` — Notebook principal com configuração do ambiente, limpeza dos dados, visualizações interativas em Altair e síntese final.
-- `titanic.csv` — Dataset utilizado nas análises.
-- `environment.yml` — Especificação do ambiente Conda (`seminario-altair`).
+O trabalho utiliza a base `titanic.csv` para demonstrar gráficos estatísticos declarativos, interatividade e composição de visualizações. A preparação dos dados é feita com **Pandas**, e os exemplos são apresentados em um **Jupyter Notebook**, executado diretamente no VS Code.
 
-## Como Rodar Localmente
+## Arquivos do projeto
 
-### Passo 1 — Baixar ou clonar o repositório
+- `seminario-altair-titanic.ipynb` — notebook principal, com explicações, código, gráficos e conclusão.
+- `titanic.csv` — conjunto de dados usado nos exemplos.
+- `environment.yml` — dependências para criar o ambiente Conda `seminario-altair`.
+- `README.md` — instruções de execução do projeto.
+
+## Requisitos
+
+- **Miniconda ou Anaconda** instalado.
+- **VS Code** com as extensões **Python** e **Jupyter** (da Microsoft).
+
+## Como executar no VS Code
+
+### 1 — Baixar ou clonar o repositório
 Abra o terminal (ou Git Bash / Anaconda Prompt) e vá até a pasta desejada:
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd <NOME_DA_PASTA_DO_REPOSITORIO>
+git clone https://github.com/bryan5719/ufsj-ds-seminario-altair.git
+cd ufsj-ds-seminario-altair
 ```
 
-*(Caso tenha baixado o `.zip` direto pelo GitHub, extraia a pasta no computador e abra o terminal dentro dela).*
-
-### Passo 2 — Criar e ativar o ambiente Conda
-Com o **Conda** (Miniconda ou Anaconda) instalado na máquina, crie o ambiente a partir do `environment.yml` e ative-o:
+### 2. Criar e ativar o ambiente Conda
 
 ```bash
 conda env create -f environment.yml
 conda activate seminario-altair
 ```
 
-Se o ambiente `seminario-altair` já existir na máquina, atualize ele com:
+Se o ambiente `seminario-altair` já existir, atualize-o em vez de criá-lo novamente:
 
 ```bash
 conda env update -f environment.yml --prune
 conda activate seminario-altair
 ```
 
-### Passo 3 — Abrir o notebook e rodar as células
-Com o ambiente `seminario-altair` ativo no terminal, inicie o JupyterLab:
+Para conferir se o ambiente foi ativado e as bibliotecas estão disponíveis:
 
 ```bash
-jupyter lab
+python --version
+python -c "import pandas, altair; print('Pandas:', pandas.__version__); print('Altair:', altair.__version__)"
 ```
 
-1. Abra o arquivo `seminario-altair-titanic.ipynb` no **JupyterLab** ou no **VS Code**.
-2. Confirme no canto superior direito que o **kernel / interpretador** selecionado é o do ambiente **`seminario-altair`**.
-3. Execute as células em ordem (`Shift + Enter` ou **Run All**).
+### 3. Executar o notebook
 
-### Dicas Rápidas se Algo Travar
-- **Erro de arquivo não encontrado (`titanic.csv`):** confira se o `titanic.csv` está na mesma pasta do `seminario-altair-titanic.ipynb`.
-- **Gráfico não aparece ou kernel errado:** troque o kernel para o Python do ambiente `seminario-altair` e rode novamente a célula de importações e a do gráfico.
+1. Abra `seminario-altair-titanic.ipynb` no explorador do VS Code.
+2. No canto superior direito do notebook, clique em **Select Kernel**.
+3. Selecione o ambiente Python **`seminario-altair`**.
+4. Clique em **Run All** para executar todas as células.
+5. Confira os gráficos e salve o notebook com **Ctrl + S**, preservando as saídas.
+
+**Não é necessário abrir o JupyterLab no navegador:** todo o processo pode ser feito pelo próprio VS Code.
+
+## Demonstrações com Altair
+
+O notebook apresenta quatro recursos da biblioteca usando os dados do Titanic:
+
+1. **Dispersão interativa:** idade versus tarifa, com cores por sobrevivência, informações ao passar o mouse e zoom.
+2. **Agregações e facetas:** contagem de passageiros por sobrevivência, separada por classe.
+3. **Seleção cruzada (*brushing & linking*):** seleção de pontos em um gráfico que atualiza outro gráfico.
+4. **Composição de gráficos:** pontos, linha de média e comparação de tarifas por classe, com seleção interativa.
+
+Além dos exemplos, o notebook apresenta o propósito do Altair, compara a ferramenta com outras bibliotecas de visualização e discute vantagens, limitações e possíveis aplicações.
+
+## Problemas comuns
+
+- **`EnvironmentNameNotFound` ou ambiente inexistente:** execute `conda env create -f environment.yml` antes de ativá-lo.
+- **Ambiente já existente:** execute `conda env update -f environment.yml --prune`.
+- **`ModuleNotFoundError` para `altair` ou `pandas`:** confirme que o kernel do notebook é `seminario-altair` e que o ambiente foi criado a partir do arquivo YAML.
+- **Erro ao ler `titanic.csv`:** mantenha o CSV na mesma pasta do notebook e abra essa pasta como projeto no VS Code.
+- **Gráficos não aparecem:** confira o kernel selecionado e execute novamente as células, começando pela de importação e preparação dos dados.
+
+## Entrega
+
+O material do seminário inclui o notebook `.ipynb` com suas saídas salvas e os slides da apresentação exportados em PDF. O ambiente Conda e o CSV acompanham o notebook para permitir que os exemplos sejam reproduzidos em outro computador.
